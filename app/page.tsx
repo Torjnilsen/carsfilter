@@ -6,7 +6,15 @@ import ShowMore from "@/components/ShowMore"
 import { fuels, yearsOfProduction } from "@/constants"
 import { fetchCars } from "@/utils"
 
-export default async function Home({searchParams}) {
+type SearchParams = {
+  manufacturer?: string;
+  year?: number;
+  fuel?: string;
+  limit?: number;
+  model?: string;
+};
+
+export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "",
     year: searchParams.year || 2022,
@@ -14,7 +22,6 @@ export default async function Home({searchParams}) {
     limit: searchParams.limit || 10,
     model: searchParams.model || "",
   });
-
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
   return (
