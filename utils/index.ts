@@ -18,15 +18,15 @@ return result;
 }
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
-    const basePricePerDay = 50; // Base rental price per day in dollars
-    const mileageFactor = 0.1; // Additional rate per mile driven
-    const ageFactor = 0.05; // Additional rate per year of vehicle age
+    const basePricePerDay = 50; 
+    const mileageFactor = 0.1;
+    const ageFactor = 0.05; 
   
-    // Calculate additional rate based on mileage and age
+    
     const mileageRate = city_mpg * mileageFactor;
     const ageRate = (new Date().getFullYear() - year) * ageFactor;
   
-    // Calculate total rental rate per day
+ 
     const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
   
     return rentalRatePerDay.toFixed(0);
@@ -37,12 +37,15 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
     const { make, model, year } = car;
   
     url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_API_KEY || '');
-    url.searchParams.append('make', String(make)); // Convert make to string
-    url.searchParams.append('modelFamily', model.split(" ")[0]);
+    url.searchParams.append('make', String(make)); 
+  
+
+    const modelString = typeof model === 'string' ? model : '';
+  
+    url.searchParams.append('modelFamily', modelString.split(" ")[0]);
     url.searchParams.append('zoomType', 'fullscreen');
     url.searchParams.append('modelYear', `${year}`);
-  
-    // Check if angle is provided before appending
+
     if (angle !== undefined) {
       url.searchParams.append('angle', `${angle}`);
     }
