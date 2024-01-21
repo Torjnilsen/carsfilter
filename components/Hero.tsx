@@ -16,10 +16,11 @@ const Hero = () => {
        <p className="hero__subtitle">streamline your car rental experiance with our booking process</p>
 
        <CustomButton 
-       title="explore cars"
-       containerStyles="bg-primary-blue text-white rounded-full mt-10"
-       handleClick={handleScroll}
-       />
+  title="explore cars"
+  containerStyles="bg-primary-blue text-white rounded-full mt-10"
+  handleClick={handleScroll}
+  isDisabled={false}  
+/>
         </div>
 
         <div className="hero__image-container">
